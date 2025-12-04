@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life Tracker - Harian</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-chart-line"></i>
+                <span>Life Tracker</span>
+            </a>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="daily.html" class="active"><i class="fas fa-calendar-day"></i> Harian</a></li>
+                <li><a href="weekly.html"><i class="fas fa-calendar-week"></i> Mingguan</a></li>
+                <li><a href="weekly-report.html"><i class="fas fa-chart-bar"></i> Laporan Mingguan</a></li>
+                <li><a href="monthly.html"><i class="fas fa-calendar-alt"></i> Bulanan</a></li>
+                <li><a href="notes.html"><i class="fas fa-sticky-note"></i> Catatan</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <header class="page-header">
+            <h1><i class="fas fa-calendar-day"></i> Aktivitas Harian</h1>
+            <p class="subtitle">Kelola checklist kegiatan harianmu dan pantau progress</p>
+            <div class="date-selector">
+                <button class="btn-icon" id="prevDate"><i class="fas fa-chevron-left"></i></button>
+                <h2 id="currentDate">Senin, 1 Januari 2023</h2>
+                <button class="btn-icon" id="nextDate"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </header>
+
+        <div class="content-grid">
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-tasks"></i> Checklist Harian</h2>
+                    <div class="header-actions">
+                        <button class="btn-secondary" id="addActivity"><i class="fas fa-plus"></i> Tambah</button>
+                        <button class="btn-primary" id="saveDaily"><i class="fas fa-save"></i> Simpan</button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="daily-summary">
+                        <div class="summary-item">
+                            <span class="summary-label">Total Kegiatan:</span>
+                            <span class="summary-value" id="totalActivities">0</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Selesai:</span>
+                            <span class="summary-value" id="completedActivities">0</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Persentase:</span>
+                            <span class="summary-value percentage" id="dailyPercentage">0%</span>
+                        </div>
+                    </div>
+
+                    <div class="daily-checklist" id="dailyChecklist">
+                        <!-- Activities will be generated here -->
+                        <p class="empty-state">Belum ada kegiatan untuk hari ini. Klik "Tambah" untuk menambahkan kegiatan baru.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-plus-circle"></i> Tambah Kegiatan Baru</h2>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="activityName"><i class="fas fa-pencil-alt"></i> Nama Kegiatan</label>
+                        <input type="text" id="activityName" placeholder="Contoh: Olahraga 30 menit, Belajar JavaScript">
+                    </div>
+                    <div class="form-group">
+                        <label for="activityTime"><i class="fas fa-clock"></i> Waktu (opsional)</label>
+                        <input type="text" id="activityTime" placeholder="Contoh: Pagi, 09:00, Setelah makan siang">
+                    </div>
+                    <div class="form-group">
+                        <label for="activityCategory"><i class="fas fa-tag"></i> Kategori</label>
+                        <select id="activityCategory">
+                            <option value="work">Pekerjaan</option>
+                            <option value="study">Belajar</option>
+                            <option value="health">Kesehatan</option>
+                            <option value="personal">Personal</option>
+                            <option value="other">Lainnya</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="activityPriority"><i class="fas fa-exclamation-circle"></i> Prioritas</label>
+                        <select id="activityPriority">
+                            <option value="low">Rendah</option>
+                            <option value="medium" selected>Sedang</option>
+                            <option value="high">Tinggi</option>
+                        </select>
+                    </div>
+                    <button class="btn-primary full-width" id="addNewActivity"><i class="fas fa-plus-circle"></i> Tambah ke Checklist</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h2><i class="fas fa-chart-pie"></i> Statistik Harian</h2>
+            </div>
+            <div class="card-body">
+                <div class="stats-container">
+                    <div class="stat-circle">
+                        <div class="circle-progress" id="todayCircleProgress">
+                            <svg width="120" height="120" viewBox="0 0 120 120">
+                                <circle class="circle-bg" cx="60" cy="60" r="54" fill="none" stroke-width="8"></circle>
+                                <circle class="circle-progress-bar" cx="60" cy="60" r="54" fill="none" stroke-width="8" stroke-linecap="round" transform="rotate(-90 60 60)"></circle>
+                            </svg>
+                            <div class="circle-text">
+                                <span id="circlePercentage">0%</span>
+                            </div>
+                        </div>
+                        <div class="circle-label">Progress Hari Ini</div>
+                    </div>
+
+                    <div class="category-stats">
+                        <h3>Kategori Kegiatan</h3>
+                        <div class="category-list" id="categoryStats">
+                            <div class="category-item">
+                                <span class="category-name">Pekerjaan</span>
+                                <span class="category-count">0/0</span>
+                            </div>
+                            <div class="category-item">
+                                <span class="category-name">Belajar</span>
+                                <span class="category-count">0/0</span>
+                            </div>
+                            <div class="category-item">
+                                <span class="category-name">Kesehatan</span>
+                                <span class="category-count">0/0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="daily-notes">
+                        <h3><i class="fas fa-sticky-note"></i> Catatan Harian</h3>
+                        <textarea id="dailyNotes" placeholder="Tulis catatan harian di sini..."></textarea>
+                        <button class="btn-secondary" id="saveDailyNotes"><i class="fas fa-save"></i> Simpan Catatan</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>Life Tracker &copy; 2023 - Sistem Tracking Kehidupan</p>
+        <p class="footer-links">
+            <a href="index.html">Dashboard</a> | 
+            <a href="daily.html">Harian</a> | 
+            <a href="weekly-report.html">Laporan</a> | 
+            <a href="notes.html">Catatan</a>
+        </p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
