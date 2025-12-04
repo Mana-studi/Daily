@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LifeMonitor - Monthly</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-heartbeat"></i>
+                <span>LifeMonitor</span>
+            </a>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="weekly.html">Weekly</a></li>
+                <li><a href="monthly.html" class="active">Monthly</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <header class="page-header">
+            <h1>Evaluasi Bulanan</h1>
+            <p class="subtitle">Analisis performa 4 minggu terakhir</p>
+        </header>
+
+        <!-- Input Nilai Bulanan -->
+        <div class="card">
+            <div class="card-header">
+                <h2><i class="fas fa-calculator"></i> Kalkulator Bulanan</h2>
+            </div>
+            <div class="card-body">
+                <div class="monthly-inputs">
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label for="m1"><i class="fas fa-calendar-week"></i> Minggu 1 (M1)</label>
+                            <input type="number" id="m1" min="0" max="100" value="0">
+                        </div>
+                        <div class="input-group">
+                            <label for="m2"><i class="fas fa-calendar-week"></i> Minggu 2 (M2)</label>
+                            <input type="number" id="m2" min="0" max="100" value="0">
+                        </div>
+                    </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label for="m3"><i class="fas fa-calendar-week"></i> Minggu 3 (M3)</label>
+                            <input type="number" id="m3" min="0" max="100" value="0">
+                        </div>
+                        <div class="input-group">
+                            <label for="m4"><i class="fas fa-calendar-week"></i> Minggu 4 (M4)</label>
+                            <input type="number" id="m4" min="0" max="100" value="0">
+                        </div>
+                    </div>
+                    <button class="btn-calculate full-width" id="calculateMonthly">
+                        <i class="fas fa-calculator"></i> Hitung Rata-rata Bulanan
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hasil Bulanan -->
+        <div class="card full-width">
+            <div class="card-header">
+                <h2><i class="fas fa-chart-pie"></i> Hasil Evaluasi</h2>
+            </div>
+            <div class="card-body">
+                <div class="monthly-results">
+                    <div class="result-main">
+                        <div class="average-container">
+                            <h3>Rata-rata Bulanan</h3>
+                            <div class="average-score" id="monthlyAverage">0</div>
+                            <div class="average-label">dari 100 poin</div>
+                        </div>
+                        <div class="result-container">
+                            <h3>Label Performa</h3>
+                            <div class="result-label big" id="monthlyLabel">
+                                <span class="label-text">Pemalas tingkat akhir. Satu bulan hilang begitu saja.</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stats-container">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>Minggu Terbaik</h3>
+                                <div class="stat-value" id="bestWeek">-</div>
+                                <div class="stat-label">Skor tertinggi</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-arrow-trend-up"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>Tren Perkembangan</h3>
+                                <div class="stat-value" id="monthlyTrend">-</div>
+                                <div class="stat-label">Progress bulanan</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-balance-scale"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>Konsistensi</h3>
+                                <div class="stat-value" id="consistency">0%</div>
+                                <div class="stat-label">Stabilitas performa</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="analysis-section">
+                        <div class="analysis-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="analysis-content">
+                            <h3>Analisis Bulanan</h3>
+                            <p id="monthlyAnalysis">Masukkan nilai M1-M4 untuk mendapatkan analisis performa bulanan.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
